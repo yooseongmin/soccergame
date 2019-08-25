@@ -98,42 +98,49 @@
                 <div class="player1_right">
                     <form id="basic_info">
                     <input type="file" id="img_src"><br>
-                    이름 : <input type="text"><br>
-                    나이 : <input type="text"><br>
-                    소속팀 : <input type="text">
+                    이름 : <input id="basic_name" type="text"><br>
+                    나이 : <input id="basic_age" type="text"><br>
+                    소속팀 : <input id="basic_team" type="text">
                     </form>
 
                 </div>
             </div>
             <hr style="border:2px solid gray">
             <div class="player2">
+                <form enctype='multipart/form-data' action="player_registeration.php" id="player_ability" method="POST">
+                    <input type="hidden" id="_img" name="_img">
+                    <input type="hidden" id="_name" name="_name">
+                    <input type="hidden" id="_age" name="_age">
+                    <input type="file" id="_team" name="_team" style="display:none;">
+                    
                 <div class="ability">
                     <span class="ability_name">속도 :</span> 
-                    <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)">
+                    <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)" name="speed">
                     <span class="result"></span>
                 </div>
 
                 <div class="ability">
                         <span class="ability_name">드리블 :</span> 
-                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)">
+                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)" name="dribble">
                         <span class="result"></span>
                     </div>
                 <div class="ability">
                         <span class="ability_name">멘탈 :</span> 
-                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)">
+                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)" name="mental">
                         <span class="result"></span>
                     </div>
                 <div class="ability">
                         <span class="ability_name">패스 :</span> 
-                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)">
+                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)" name="pass">
                         <span class="result"></span>
                     </div>
                 <div class="ability">
                         <span class="ability_name">피지컬 :</span> 
-                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)">
+                        <input type="range" step="1" value="" min="0" max=20 class="ability_range" onchange="myfunc(this)" name="physical">
                         <span class="result"></span>
-                    </div>                
-
+                    </div>  
+                    <input type="button" value="등록하기" style="float:right; margin-top:20px;" onclick="onSubmit()">              
+                </form>
                     
                 
 
@@ -144,7 +151,7 @@
 
                 
             </div>
-            <input type="submit" value="등록하기" style="float:right; margin-top:20px;">
+           
         </div>
        
         
@@ -172,8 +179,15 @@
             };
 
 
-                        //input range의 value 값을 넣는 스크립트입니다.
-                    
+            //위쪽에 있는 선수의 기본정보를 Form 안에 포함된 Hidden INPUT 태그에 값을 넣어주는 스크립트 입니다.
+            function onSubmit(){
+                document.getElementById("_name").value = document.getElementById("basic_name").value;
+                document.getElementById("_age").value = document.getElementById("basic_age").value;
+                document.getElementById("_team").value = document.getElementById("basic_team").value;
+                document.getElementById("_img").files = document.getElementById("img_src").files;
+                document.getElementById("player_ability").submit();
+            }        
+            //input range의 value 값을 넣는 스크립트입니다.
             function myfunc(newVal){
                 var a = newVal.value;
                 var b = newVal;
@@ -182,7 +196,15 @@
                 b.nextElementSibling.innerText = a;
 
 
-            }
+            };
+
+            //test
+            function test(){
+            var aa = document.getElementById("_img").value;
+            var a = document.getElementById("img_src").value;
+            console.log(a);
+            console.log(aa)
+            };
 
      
 
