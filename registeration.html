@@ -89,6 +89,7 @@
 
     </head>
     <body>
+        <h2 style="text-align:center;">좋아하는 선수를 등록하세요.</h2>
         <div class="container">
             <div class="player1">
                 <div class="player1_left">
@@ -107,11 +108,11 @@
             </div>
             <hr style="border:2px solid gray">
             <div class="player2">
-                <form enctype='multipart/form-data' action="player_registeration.php" id="player_ability" method="POST">
-                    <input type="hidden" id="_img" name="_img">
+                <form action="player_registeration.php" id="player_ability" method="POST">
+          
                     <input type="hidden" id="_name" name="_name">
                     <input type="hidden" id="_age" name="_age">
-                    <input type="file" id="_team" name="_team" style="display:none;">
+                    <input type="hidden" id="_team" name="_team">
                     
                 <div class="ability">
                     <span class="ability_name">속도 :</span> 
@@ -184,7 +185,6 @@
                 document.getElementById("_name").value = document.getElementById("basic_name").value;
                 document.getElementById("_age").value = document.getElementById("basic_age").value;
                 document.getElementById("_team").value = document.getElementById("basic_team").value;
-                document.getElementById("_img").files = document.getElementById("img_src").files;
                 document.getElementById("player_ability").submit();
             }        
             //input range의 value 값을 넣는 스크립트입니다.
