@@ -28,6 +28,9 @@
                     <input type="text" id="_name" name="_name" onkeyup="referralPlayer()">
                     <input type="submit" value="선수 불러오기">
             </form>
+            <div id="suggestDiv" class="suggest">
+                <div id="suggestListDiv"></div>
+            </div>
         </div>
         
 
@@ -35,15 +38,30 @@
     <script>
         function referralPlayer(){
             var _data = $('#search_bar').serialize();
+            if("" == $('#_name').val()){
+                return;
+            }
             $.ajax({
                 url : "searchPlayer.php",
                 data : _data,
                 type : "POST"
             }).done(function(a){
-                console.log(a);
-            });
+                console.log("A : "+ a);
+                try{
+                    var result =JSON.parse(a);
+                    for(k = 0 ; k < result.length ; k ++){
+                        console.log(result[k].name);
+                    }
+
+                } catch (e){
+
+                }            
+             });
 
             
+        }
+        function hide(){
+
         }
    
     </script>
