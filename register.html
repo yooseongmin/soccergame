@@ -62,7 +62,7 @@
         margin-left : 3%;
     }
     #status > input {
-        width : 70%;
+        width : 50%;
         margin : 2%;
     }
     #status > span{
@@ -103,15 +103,15 @@
         <div class="wrap3">
             <form id="status" action="register.php">
                 <span> 파워 : </span>
-                <input type="range" name="power" min="0" max="20" onchange="myValue(this)"><br>
+                <input type="range" name="power" min="0" max="20" onchange="myValue(this)"><span class="_value"></span><br>
                 <span> 속도 : </span>
-                <input type="range" name="speed" min="0" max="20" onchange="value()"><br>
+                <input type="range" name="speed" min="0" max="20" onchange="myValue(this)"><span class="_value"></span><br>
                 <span> 드리블 : </span>
-                <input type="range" name="dribble" min="0" max="20" onchange="value()"><br>
+                <input type="range" name="dribble" min="0" max="20" onchange="myValue(this)"><span class="_value"></span><br>
                 <span> 정신력 : </span>
-                <input type="range" name="mental" min="0" max="20" onchange="value()"><br>
+                <input type="range" name="mental" min="0" max="20" onchange="myValue(this)"><span class="_value"></span><br>
                 <span> 피지컬 : </span>
-                <input type="range" name="physical" min="0" max="20" onchange="value()"><br>
+                <input type="range" name="physical" min="0" max="20" onchange="myValue(this)"><span class="_value"></span><br>
                 
                 <input type="hidden" id="_name" name="_name">
                 <input type="hidden" id="_team" name="_team">
@@ -155,7 +155,8 @@ function register(){
 
     /* range input 값을 프론트에 노출시키는 태그입니다. */
 function myValue(a){
-    console.log(a);
+    var _span = a.nextSibling;
+    _span.innerText = a.value;
 }
 
 </script>
