@@ -12,7 +12,7 @@
     $mental = $_POST["mental"];
     $physical = $_POST["physical"];
 
-    $sql = "INSERT INTO MyGuests (name, team, age, country, power, speed, dribble, mental, physical) 
+    $sql = "INSERT INTO SoccerGame (_name, team, age, country, power, speed, dribble, mental, physical) 
     VALUES ('$name', '$team', '$age', '$country', '$power' , '$speed', '$dribble' , '$mental' , '$physical')";
 
     if($conn->query($sql)==TRUE){
