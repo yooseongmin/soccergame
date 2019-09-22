@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>게임 시작하기</title>
+    <style>
+        h2{
+            text-align : center;
+            margin-top : 20%;
+        }
+        #searchBar{
+            width : 50%;
+            margin-top : 5%;
+            height : 30px;
+            border : 1px solid black;
+        }
+        #searchPlayer{
+            text-align: center;
+        }
+        #startSearch{
+            background-color: black;
+            color : white;
+            height : 35px;
+        }
+    </style>
+</head>
+<body>
+    <h2>선수를 검색하세요.</h2>
+    <div>
+        <form id="searchPlayer">
+            <input type="text" id="searchBar" onkeyup="referralPlayer()">
+            <input type="button" id="startSearch" value="검색">
+        </form>
+    </div>
+</body>
+
+<script>
+    function referralPlayer(){
+
+            var _data = $("#searchBar").serialize();
+            if(""==$("#name").val()){
+                return ;
+            }
+            $.ajax({
+               url : "searchPlayer.php",
+               data : _data,
+               type : "POST"
+            }).done(function(a){
+                try {
+                    var result = JSON.parse(a);
+                    console.log(result);
+                }
+                catch(e){
+                    
+                }
+            });
+    }
+</script>
