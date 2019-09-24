@@ -48,9 +48,10 @@
                
             }).done(function(a){
                 try {
-                    var result = JSON.parse(a);
-                    console.log(result);
-                    console.log("이게 성공?");
+                    
+                    var result = JSON.stringify(a);
+                    var text = JSON.parse(result);
+                    console.log(text);
                 }
                 catch(e){
                     console.log(e);
