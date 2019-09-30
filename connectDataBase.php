@@ -9,5 +9,5 @@
     if($conn->connect_error){
         die("연결 실패 : ".$conn->connect_error);
     }
-    echo "연결 성공~";
+    
 ?>

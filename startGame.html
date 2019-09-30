@@ -22,19 +22,38 @@
             color : white;
             height : 35px;
         }
+       ul{
+           margin : 0;
+       }
+        li{
+           
+            display : inline-block;
+                list-style : none;
+                
+                border : 1px solid gray;
+                width : 60%;
+                margin-right : 12%;
+                
+            
+                
+            }
+
     </style>
 </head>
 <body>
     <h2>선수를 검색하세요.</h2>
-    <div>
+    <div id="total">
         <form id="searchPlayer">
             <input type="text" id="searchBar" name="searchBar" onkeyup="referralPlayer()">
             <input type="button" id="startSearch" value="검색">
+            <span id="wrap"></span>
         </form>
+
     </div>
 </body>
 
 <script>
+    var temp="";
     function referralPlayer(){
 
             var _data = $("#searchPlayer").serialize();
@@ -48,14 +67,41 @@
                
             }).done(function(a){
                 try {
+                    var text = decodeUnicode(a);
                     
-                    var result = JSON.stringify(a);
-                    var text = JSON.parse(result);
-                    console.log(text);
+                    var data = JSON.parse(a);
+                    
+                    var result = "";
+                   
+                    for(i=0;i<data.length;i++){
+                        result = result+ "<li class='referText' onclick='clickText(this)'>" + data[i]["_name"] + "</li>";
+                    }
+                    result = "<ul>" + result + "</ul>";
+                
+                    document.getElementById("wrap").innerHTML = result;
                 }
                 catch(e){
-                    console.log(e);
+                    console.log("error");
                 }
             });
     }
+
+
+// 통신을 통해 넘어온 JSON을 Decode 함수 입니다.
+    function decodeUnicode(unicodeString){ var r = /\\u([\d\w]{4})/gi; unicodeString = unicodeString.replace(r, function (match, grp) { return String.fromCharCode(parseInt(grp, 16)); } ); return unescape(unicodeString); }
+// class 값을 누르면, 그 값이 SearchBar에 들어가도록 한다.
+ function clickText(a){
+    var _val = a.innerText;
+    
+    var _input = document.getElementById("searchBar");
+
+    _input.value = _val;
+    var _obj =  document.getElementsByClassName("referText");
+    for(i=0;i<_obj.length;i++){
+        _obj[i].style.display = "none";
+    }
+
+   
+
+ }
 </script>

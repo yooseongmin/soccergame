@@ -5,11 +5,9 @@
 
     $sql = "SELECT _name FROM SoccerGame WHERE _name LIKE '%$_name%'";
     $result = $conn->query($sql);
-    if($row = mysqli_fetch_array($result)){
-        echo $row;
-    }
+
     
-    /*
+
     $result_text = "[";
     $i = 0;
     while($row = mysqli_fetch_array($result)){
@@ -20,7 +18,8 @@
         $i++;
     }
     $result_text = $result_text."]";
-    echo $result_text;
-    */
+
+   echo $result_text;
+
 
 ?>
