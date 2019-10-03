@@ -45,7 +45,7 @@
     <div id="total">
         <form id="searchPlayer">
             <input type="text" id="searchBar" name="searchBar" onkeyup="referralPlayer()">
-            <input type="button" id="startSearch" value="검색">
+            <input type="button" id="startSearch" value="검색" onclick="gameStart()">
             <span id="wrap"></span>
         </form>
 
@@ -89,7 +89,7 @@
 
 // 통신을 통해 넘어온 JSON을 Decode 함수 입니다.
     function decodeUnicode(unicodeString){ var r = /\\u([\d\w]{4})/gi; unicodeString = unicodeString.replace(r, function (match, grp) { return String.fromCharCode(parseInt(grp, 16)); } ); return unescape(unicodeString); }
-// class 값을 누르면, 그 값이 SearchBar에 들어가도록 한다.
+// class 값을 누르면, 그 값이 SearchBar에 들어가도록 하는 함수입니다.
  function clickText(a){
     var _val = a.innerText;
     
@@ -101,7 +101,23 @@
         _obj[i].style.display = "none";
     }
 
-   
+ }
 
+ //선수 데이터를 불러와, 게임을 시작합니다.
+
+ function gameStart(){
+    _data = $("#searchPlayer").serialize();
+    $.ajax({
+        url : "gameStart.php",
+        data : _data,
+        type : "POST"
+    }).done(function(b){
+        if(b=="null"){
+            alert("선수가 없단다.");
+            return;
+        }
+        window.location.href="newstart.html?"+_data;
+        console.log(b);
+    })
  }
 </script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>가즈아~</title>
+<style>
+    h2{
+        text-align : center;
+        margin-top : 20%;
+    }
+    #searchBar{
+        width : 50%;
+        margin-top : 5%;
+        height : 30px;
+        border : 1px solid black;
+    }
+    #searchPlayer{
+        text-align: center;
+    }
+    #startSearch{
+        background-color: black;
+        color : white;
+        height : 35px;
+    }
+   ul{
+       margin : 0;
+   }
+    li{
+       
+        display : inline-block;
+            list-style : none;
+            
+            border : 1px solid gray;
+            width : 60%;
+            margin-right : 12%;
+            
+        
+            
+        }
+
+</style>
+<script>
+    // POST 방식으로 가져온 parameter를 만들어둔 form태그에 데이터로 다시 가져왔다.
+    window.onload = function loadPlayer(){
+        function getParameterByName(name,url){
+            if(!url)url = window.location.href;
+            name = name.replace(/[\[\]]/g,"\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            return results[2];
+        }
+        // URL 파라미터를 디코딩 해주고, input 태그에 value로 넣어두었다.
+        var name = getParameterByName('searchBar');
+        var decodeName = decodeURI(decodeURIComponent(name));
+        var _name = decodeName;
+        document.getElementById("name").value = _name;
+
+        _data = $("#loadPlayer").serialize();
+        $.ajax({
+            url : "loadPlayer.php",
+            data : _data,
+            type : "POST"
+        }).done(function(b){
+            var text = decodeUnicode(b);
+                    console.log("텍스트" + text);
+            var data = JSON.parse(b);
+            console.log(data);
+                    
+            var result = "";
+        });
+    }
+
+    function decodeUnicode(unicodeString){ var r = /\\u([\d\w]{4})/gi; unicodeString = unicodeString.replace(r, function (match, grp) { return String.fromCharCode(parseInt(grp, 16)); } ); return unescape(unicodeString); }
+
+
+
+</script>
+</head>
+<body>
+<h2>왔니?</h2>
+<div id="total">
+    <form id="loadPlayer">
+            <input type="hidden" id="name" name="name" value="오키">
+    </form>
+   
+    
+
+</div>
+
+</body>
