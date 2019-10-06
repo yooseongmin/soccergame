@@ -39,6 +39,16 @@
         }
 
 </style>
+
+</head>
+<body>
+<h2>왔니?</h2>
+<div id="total">
+    <form id="loadPlayer">
+            <input type="hidden" id="name" name="name" value="오키">
+    </form>
+</div>
+
 <script>
     // POST 방식으로 가져온 parameter를 만들어둔 form태그에 데이터로 다시 가져왔다.
     window.onload = function loadPlayer(){
@@ -54,7 +64,7 @@
         var decodeName = decodeURI(decodeURIComponent(name));
         var _name = decodeName;
         document.getElementById("name").value = _name;
-
+        // Form 태그의 데이터 전송
         _data = $("#loadPlayer").serialize();
         $.ajax({
             url : "loadPlayer.php",
@@ -62,11 +72,10 @@
             type : "POST"
         }).done(function(b){
             var text = decodeUnicode(b);
-                    console.log("텍스트" + text);
-            var data = JSON.parse(b);
+            var data = JSON.parse(text);
             console.log(data);
                     
-            var result = "";
+           
         });
     }
 
@@ -75,16 +84,5 @@
 
 
 </script>
-</head>
-<body>
-<h2>왔니?</h2>
-<div id="total">
-    <form id="loadPlayer">
-            <input type="hidden" id="name" name="name" value="오키">
-    </form>
-   
-    
-
-</div>
 
 </body>
