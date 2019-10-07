@@ -48,7 +48,8 @@
             <input type="hidden" id="name" name="name" value="오키">
     </form>
 </div>
-
+<?php
+?>
 <script>
     // POST 방식으로 가져온 parameter를 만들어둔 form태그에 데이터로 다시 가져왔다.
     window.onload = function loadPlayer(){
@@ -71,9 +72,16 @@
             data : _data,
             type : "POST"
         }).done(function(b){
+            // var text = decodeUnicode(b);
+           
+           try{
             var text = decodeUnicode(b);
-            var data = JSON.parse(text);
-            console.log(data);
+            console.log(text);
+           }
+           catch(e){
+               console.log(e);
+           }
+           
                     
            
         });
